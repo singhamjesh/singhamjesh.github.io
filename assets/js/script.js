@@ -1,86 +1,85 @@
 'use strict';
 
 $(function () {
-  /* Typing animation  */
+  // Typing animation
   $('#headingTyping').typed({
     strings: ['Amjesh Singh', 'a Developer', 'a Designer'],
     loop: true,
-    startDelay: 1e3,
-    backDelay: 2e3,
+    startDelay: 1000,
+    backDelay: 2000,
   });
 
-  /* Scroll on given section */
-  $('.scrollBtn').click(function (e) {
+  // Scroll to section
+  $('.scrollBtn').on('click', function () {
     $('.navbar-collapse').collapse('hide');
     const section = $(this).data('section');
-    $('html, body').animate({
-      scrollTop: $(`.` + section).offset().top - 100,
-    });
-  });
-
-  /* Header scroll nav design */
-  $(window).scroll(function (e) {
-    const navbar = $('#header-section').find('.navbar');
-    const top = $(this).scrollTop();
-    console.log(navbar);
-    if (top > 500) {
-      navbar.removeClass('bg-transparent');
-      navbar.addClass('bg-sticky');
-    } else {
-      navbar.removeClass('bg-sticky');
-      navbar.addClass('bg-transparent');
+    const $target = $('.' + section);
+    if ($target.length) {
+      $('html, body').animate(
+        {
+          scrollTop: $target.offset().top - 100,
+        },
+        600
+      );
     }
   });
 
-  /* Open hire modal */
-  $('#hireMe').click(function (e) {
+  // Header nav sticky toggle on scroll
+  $(window).on('scroll', function () {
+    const $navbar = $('#header-section').find('.navbar');
+    const top = $(this).scrollTop();
+    if (top > 500) {
+      $navbar.removeClass('bg-transparent').addClass('bg-sticky');
+    } else {
+      $navbar.removeClass('bg-sticky').addClass('bg-transparent');
+    }
+  });
+
+  // Open hire modal
+  $('#hireMe').on('click', function () {
     $('#hireMeModal').modal('show');
   });
 
-  // Optional: Highlight nav on scroll or click for user friendliness
-  document.addEventListener('DOMContentLoaded', function () {
-    // Make nav .active based on scroll position or click
-    var navLinks = document.querySelectorAll('.navbar-nav .nav-link.scrollBtn');
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        navLinks.forEach((l) => l.classList.remove('active'));
-        this.classList.add('active');
-      });
+  // Project filter logic - deduplicated and refactored
+  const $filterContainer = $('#project-filters');
+  const $filterButtons = $filterContainer.find('.filter-btn');
+  const $projectList = $('#project-list');
+  const $projectItems = $projectList.find('.project-item');
+
+  // Function to filter projects
+  function filterProjects(filterValue) {
+    $projectItems.each(function () {
+      const $item = $(this);
+      const categories = ($item.data('category') || '').split(' ');
+      if (filterValue === 'all' || categories.includes(filterValue)) {
+        // Show with fade in effect
+        $item.css('display', 'block');
+        $item.css('opacity', 0);
+        setTimeout(() => $item.css('opacity', 1), 100);
+      } else {
+        $item.css('display', 'none');
+      }
     });
+  }
 
-    // Project filtering functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectItems = document.querySelectorAll('.project-item');
+  // Add smooth animations for filtered items (set once)
+  $projectItems.css('transition', 'opacity 0.3s ease, transform 0.3s ease');
 
-    filterButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach((btn) => btn.classList.remove('active'));
-        // Add active class to clicked button
-        button.classList.add('active');
+  // Project filter button click
+  $filterButtons.on('click', function () {
+    $filterButtons.removeClass('active');
+    $(this).addClass('active');
+    const filterValue = $(this).data('filter');
+    filterProjects(filterValue);
+  });
 
-        const filterValue = button.getAttribute('data-filter');
+  // Optional: initialize filter to show all on page ready
+  filterProjects('all');
 
-        projectItems.forEach((item) => {
-          const categories = item.getAttribute('data-category').split(' ');
-
-          if (filterValue === 'all' || categories.includes(filterValue)) {
-            item.style.display = 'block';
-            // Add fade-in animation
-            item.style.opacity = '0';
-            setTimeout(() => {
-              item.style.opacity = '1';
-            }, 100);
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // Add smooth animations for filtered items
-    projectItems.forEach((item) => {
-      item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    });
+  // Make nav .active based on click
+  const $navLinks = $('.navbar-nav .nav-link.scrollBtn');
+  $navLinks.on('click', function () {
+    $navLinks.removeClass('active');
+    $(this).addClass('active');
   });
 });

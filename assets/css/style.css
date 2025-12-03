@@ -43,13 +43,13 @@ body {
 * {
   box-sizing: border-box;
 }
-html,
+/* html,
 body {
   height: 100%;
-}
+} */
 body {
   margin: 0;
-  background: linear-gradient(180deg, #081126 0%, #071022 40%, #04101a 100%);
+  background: linear-gradient(180deg, #173761 0%, #101f3c 100%);
   color: #e6eef8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -68,8 +68,9 @@ strong {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #222222;
+  background-color: #101f3c;
   z-index: 99999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .navbar .navbar-toggler-icon-custom {
@@ -91,13 +92,67 @@ strong {
   font-size: 2.5rem;
 }
 
-.navbar-light .navbar-nav .nav-link,
-.navbar-light .navbar-nav .nav-link:hover,
-.navbar-light .navbar-nav .nav-link:active,
-.navbar-light .navbar-nav .nav-link:visited,
-.navbar-light .navbar-nav .nav-link:focus {
+.navbar-light .navbar-nav .nav-link {
   color: #fff;
   font-size: 1rem;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s, font-weight 0.3s;
+  overflow: hidden;
+  border-bottom: none !important; /* Remove bottom border for only one underline effect */
+}
+
+/* Animated underline effect on hover/focus */
+.navbar-light .navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, #04dbfe 0%, #026676 100%);
+  border-radius: 2px;
+  opacity: 0.9;
+  transition: transform 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8), opacity 0.25s;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:active {
+  color: #04dbfe;
+  font-size: 1.05rem;
+  font-weight: 700;
+  transition: color 0.3s, font-weight 0.3s;
+  border-bottom: none !important; /* Remove native border-bottom underline on hover/focus/active */
+}
+
+.navbar-light .navbar-nav .nav-link:hover::after,
+.navbar-light .navbar-nav .nav-link:focus::after,
+.navbar-light .navbar-nav .nav-link:active::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
+
+/* Add a subtle bounce animation on click (active) */
+@keyframes navbarNavBounce {
+  0% {
+    transform: translateX(-50%) scaleX(1) scaleY(1);
+  }
+  30% {
+    transform: translateX(-50%) scaleX(1.12) scaleY(0.92);
+  }
+  60% {
+    transform: translateX(-50%) scaleX(0.97) scaleY(1.08);
+  }
+  100% {
+    transform: translateX(-50%) scaleX(1) scaleY(1);
+  }
+}
+
+.navbar-light .navbar-nav .nav-link:active::after {
+  animation: navbarNavBounce 0.35s cubic-bezier(0.62, 0.01, 0.31, 1.56);
 }
 
 #hireMeModal .modal-body p {
@@ -148,7 +203,7 @@ strong {
 .navbar-nav .nav-link.active:focus {
   border-bottom: 2.5px solid #026676;
   color: #fff !important;
-  font-weight: bold;
+  font-weight: 800;
   background: none !important;
   box-shadow: none !important;
 }
@@ -306,7 +361,7 @@ strong {
 }
 
 .social-head ul li a {
-  color: #04909ee8;
+  color: #17345d;
 }
 
 .social-head ul li i {
@@ -428,7 +483,7 @@ strong {
 
 .about-box .about-title .hello-style {
   background-color: #1f9aa7;
-  color: #081126;
+  color: #17345d;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.1;
@@ -621,9 +676,9 @@ strong {
   padding: 13px 20px;
   border-radius: 50%;
   background-color: #ed8d8d;
-  color: #fff;
   max-height: 50px;
   z-index: 2;
+  color: #ffffff;
 }
 
 .how-it-works.row .col-2 {
@@ -703,6 +758,9 @@ strong {
   top: calc(50% - 3px);
 }
 
+/******************************************************************************/
+/* Top Project Section css
+/******************************************************************************/
 .project-list {
   list-style: none;
   padding-left: 0;
@@ -728,55 +786,42 @@ strong {
   overflow: hidden;
 }
 
-.project-list .project-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  opacity: 0.8;
-}
-
-.project-list .project-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border-color: rgba(102, 126, 234, 0.3);
-}
-
-.project-list .project-item:hover .project-title {
-  color: #667eea;
-  transition: color 0.3s ease;
-}
-
-.project-list .project-item:hover .category-badge {
-  transform: scale(1.05);
-  transition: transform 0.2s ease;
-}
-
-.project-header {
+/* Fixed: project header is column layout to prevent vertical overlap.
+   project-category under project-title */
+.project-list .project-item .project-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: flex-start;
   margin-bottom: 16px;
-  gap: 12px;
+  gap: 0.4em;
+  position: relative;
 }
 
-.project-title {
+.project-list .project-item .project-title {
   font-size: 1.25rem;
   font-weight: 600;
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   line-height: 1.4;
-  flex: 1;
+  word-break: break-word;
+  flex: none;
 }
 
-.project-category {
+.project-list .project-item .project-category {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   flex-shrink: 0;
+  background: rgba(102, 126, 234, 0.2);
+  color: #667eea;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-left: 0;
+  position: static;
+  max-width: 100%;
 }
 
 .category-badge {
@@ -911,18 +956,18 @@ strong {
     text-align: center;
   }
 
-  .project-header {
+  .project-list .project-item .project-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
 
-  .project-title {
-    margin-bottom: 8px;
+  .project-list .project-item .project-title {
+    margin-bottom: 4px;
   }
 
-  .project-category {
-    justify-content: flex-start;
+  .project-list .project-item .project-category {
+    margin-top: 0;
   }
 }
 
@@ -932,18 +977,7 @@ strong {
   font-weight: 600;
 }
 
-/* Project category indicators */
-.project-category {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(102, 126, 234, 0.2);
-  color: #667eea;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
+/* Remove old absolute-positioned category indicator (not used in column layout) */
 
 /******************************************************************************/
 /* Show Case Section
@@ -997,7 +1031,7 @@ strong {
 .preFooterSection {
   margin-top: 5rem;
   padding: 50px 0px;
-  background: linear-gradient(0deg, #071022 0%, #14326b 100%);
+  background: linear-gradient(0deg, #071022 0%, #101f3c 100%);
 }
 
 .preFooterSection ul.bottom-menu {
@@ -1040,7 +1074,7 @@ strong {
   margin: 10px;
 }
 
-.preFooterSection ul.contact-me li a {
+.preFooterSection ul.contact-me li.a {
   color: #aaa;
 }
 
@@ -1130,7 +1164,7 @@ footer a {
   .bg-transparent .navbar-nav .nav-link:active,
   .bg-transparent .navbar-nav .nav-link:visited,
   .bg-transparent .navbar-nav .nav-link:focus {
-    color: #222;
+    color: #101f3c;
   }
 
   .bg-sticky .navbar-light .navbar-nav .nav-link,

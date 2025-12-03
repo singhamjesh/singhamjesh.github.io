@@ -232,7 +232,7 @@
       <div class="polygonSvgContainer">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
-            fill="#081126"
+            fill="#17345d"
             fill-opacity="1"
             d="M0,224L48,213.3C96,203,192,181,288,192C384,203,480,245,576,266.7C672,288,768,288,864,261.3C960,235,1056,181,1152,170.7C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           ></path>
@@ -478,7 +478,9 @@
           <div
             class="col-2 text-center top d-inline-flex justify-content-center"
           >
-            <div class="circle font-weight-bold">4</div>
+            <div class="circle font-weight-bold">
+              <span style="color: #ffffff">4</span>
+            </div>
           </div>
           <div class="col-8">
             <h4>Incaendo Technologies PVT. LTD.</h4>
@@ -528,7 +530,9 @@
           <div
             class="col-2 text-center full-right d-inline-flex justify-content-center align-items-center"
           >
-            <div class="circle font-weight-bold">3</div>
+            <div class="circle font-weight-bold">
+              <span style="color: #ffffff">3</span>
+            </div>
           </div>
         </div>
         <!--path between-->
@@ -548,7 +552,9 @@
           <div
             class="col-2 text-center full-left d-inline-flex justify-content-center align-items-center"
           >
-            <div class="circle font-weight-bold">2</div>
+            <div class="circle font-weight-bold">
+              <span style="color: #ffffff">2</span>
+            </div>
           </div>
           <div class="col-8 text-left">
             <h4>Freelance</h4>
@@ -594,7 +600,9 @@
           <div
             class="col-2 text-right bottom d-inline-flex justify-content-center align-items-end"
           >
-            <div class="circle font-weight-bold">1</div>
+            <div class="circle font-weight-bold">
+              <span style="color: #ffffff">1</span>
+            </div>
           </div>
         </div>
       </div>
@@ -607,7 +615,7 @@
         <h2 class="pb-3 pt-2 border-bottom mb-5 text-center">Top Projects</h2>
 
         <!-- Project Filters -->
-        <div class="project-filters">
+        <div class="project-filters" id="project-filters">
           <button class="filter-btn active" data-filter="all">
             All Projects
           </button>
@@ -623,20 +631,22 @@
 
         <div class="row">
           <div class="col-12">
-            <ul class="project-list">
+            <ul class="project-list" id="project-list">
               <!-- Project 1 -->
               <li
                 class="project-item my-card mb-4"
                 data-category="mobile web-apps"
               >
                 <div class="project-header">
-                  <h4 class="project-title">
-                    S. Chand Publication LMS (Learning Management System)
-                  </h4>
                   <div class="project-category">
                     <span class="category-badge category-mobile">Mobile</span>
                     <span class="category-badge category-web">Web App</span>
                   </div>
+                </div>
+                <div>
+                  <h4 class="project-title">
+                    S. Chand Publication LMS (Learning Management System)
+                  </h4>
                 </div>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">Flutter</span>
@@ -666,11 +676,13 @@
               <!-- Project 2 -->
               <li class="project-item mb-4" data-category="ai-ml web-apps">
                 <div class="project-header">
-                  <h4 class="project-title">Spritz (AI-Powered Platform)</h4>
                   <div class="project-category">
                     <span class="category-badge category-ai">AI/ML</span>
                     <span class="category-badge category-web">Web App</span>
                   </div>
+                </div>
+                <div>
+                  <h4 class="project-title">Spritz (AI-Powered Platform)</h4>
                 </div>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">TypeScript</span>
@@ -698,11 +710,13 @@
               <!-- Project 3 -->
               <li class="project-item mb-4" data-category="ai-ml web-apps">
                 <div class="project-header">
-                  <h4 class="project-title">CareerMocha (AI Job Assistance)</h4>
                   <div class="project-category">
                     <span class="category-badge category-ai">AI/ML</span>
                     <span class="category-badge category-web">Web App</span>
                   </div>
+                </div>
+                <div>
+                  <h4 class="project-title">CareerMocha (AI Job Assistance)</h4>
                 </div>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">OpenAI</span>
@@ -726,10 +740,12 @@
               <!-- Project 4 -->
               <li class="project-item mb-4" data-category="web-apps">
                 <div class="project-header">
-                  <h4 class="project-title">Smash</h4>
                   <div class="project-category">
                     <span class="category-badge category-web">Web App</span>
                   </div>
+                </div>
+                <div>
+                  <h4 class="project-title">Smash</h4>
                 </div>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">Next.js</span>
@@ -758,10 +774,12 @@
               <!-- Project 5 -->
               <li class="project-item mb-4" data-category="web-apps">
                 <div class="project-header">
-                  <h4 class="project-title">Station</h4>
                   <div class="project-category">
                     <span class="category-badge category-web">Web App</span>
                   </div>
+                </div>
+                <div>
+                  <h4 class="project-title">Station</h4>
                 </div>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">Next.js</span>
@@ -785,10 +803,12 @@
               <!-- Project 6 -->
               <li class="project-item mb-4" data-category="web-apps">
                 <div class="project-header">
-                  <h4 class="project-title">The Seam</h4>
                   <div class="project-category">
                     <span class="category-badge category-web">Web App</span>
                   </div>
+                </div>
+                <div>
+                  <h4 class="project-title">The Seam</h4>
                 </div>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">Next.js</span>
@@ -813,7 +833,17 @@
 
               <!-- Project 7 -->
               <li class="project-item mb-4" data-category="web-apps">
-                <h4 class="project-title">Player State</h4>
+                <div class="project-header">
+                  <div class="project-category">
+                    <span class="category-badge category-micro"
+                      >Microservice</span
+                    >
+                    <span class="category-badge category-web">Web App</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="project-title">Player State</h4>
+                </div>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">Next.js</span>
                   <span class="badge badge-info mr-2">Hapi.js</span>
@@ -842,13 +872,15 @@
                 data-category="microservices web-apps"
               >
                 <div class="project-header">
-                  <h4 class="project-title">User Identity Manager</h4>
                   <div class="project-category">
                     <span class="category-badge category-micro"
                       >Microservice</span
                     >
                     <span class="category-badge category-web">Web App</span>
                   </div>
+                </div>
+                <div>
+                  <h4 class="project-title">User Identity Manager</h4>
                 </div>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">React.js</span>
@@ -874,9 +906,19 @@
 
               <!-- Project 9 -->
               <li class="project-item mb-4" data-category="web-apps">
-                <h4 class="project-title">
-                  Task Management, Chat, CRM Systems
-                </h4>
+                <div class="project-header">
+                  <div class="project-category">
+                    <span class="category-badge category-micro"
+                      >Microservice</span
+                    >
+                    <span class="category-badge category-web">Web App</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="project-title">
+                    Task Management, Chat, CRM Systems
+                  </h4>
+                </div>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">Angular 7</span>
                   <span class="badge badge-info mr-2">PHP (Kohana)</span>
@@ -903,12 +945,14 @@
 
               <!-- Project 10 -->
               <li class="project-item mb-4" data-category="web-apps">
-                <h4 class="project-title">
-                  Portfolio CMS, Real-Time Air Ticket Booking
-                </h4>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">Node.js</span>
                   <span class="badge badge-info mr-2">SOAP APIs</span>
+                </div>
+                <div>
+                  <h4 class="project-title">
+                    Portfolio CMS, Real-Time Air Ticket Booking
+                  </h4>
                 </div>
                 <ul class="project-desc mt-2 list-unstyled">
                   <li>
@@ -925,11 +969,13 @@
 
               <!-- Project 11 -->
               <li class="project-item mb-4" data-category="web-apps">
-                <h4 class="project-title">
-                  Fitness Studio Management & Online Test Platform
-                </h4>
                 <div class="project-meta">
                   <span class="badge badge-info mr-2">Laravel 5.2</span>
+                </div>
+                <div>
+                  <h4 class="project-title">
+                    Fitness Studio Management & Online Test Platform
+                  </h4>
                 </div>
                 <ul class="project-desc mt-2 list-unstyled">
                   <li>
@@ -1039,7 +1085,7 @@
         <div class="row">
           <div class="col-md-6">
             <ul class="bottom-menu">
-              <li><a href="./pages/blogs.html">Blogs </a></li>
+              <!-- <li><a href="./pages/blogs.html">Blogs </a></li> -->
               <li class="cvBtn">
                 <a href="./assets/amjesh_cv.pdf" target="_blank"
                   >Download CV
@@ -1058,8 +1104,8 @@
                 >
               </li>
               <li class="contact-text">
-                Contact No: &nbsp;&nbsp;&nbsp;&nbsp;<a href="tel:+919910155707"
-                  >+91 99101 55707
+                Contact No: &nbsp;&nbsp;&nbsp;&nbsp;<a href="tel:+918851449418"
+                  >+91 88514 49418
                 </a>
               </li>
               <li class="list-header mt-5">Follow me</li>
@@ -1126,7 +1172,10 @@
 
     <!-- Start: Footer section -->
     <footer>
-      <p>&copy; All right reserve - 2021 - <span id="currentYear"></span></p>
+      <p>
+        &copy; All right reserve amjesh-singh - 2021 -
+        <span id="currentYear"></span>
+      </p>
       <a href="https://www.hitwebcounter.com" target="_blank">
         <img
           src="https://hitwebcounter.com/counter/counter.php?page=7769068&style=0007&nbdigits=5&type=page&initCount=0"
