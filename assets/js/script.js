@@ -3,10 +3,17 @@
 $(function () {
   // Typing animation
   $('#headingTyping').typed({
-    strings: ['Amjesh Singh', 'a Developer', 'a Designer'],
+    strings: [
+      'a Senior Full Stack Engineer',
+      'a MERN Stack Specialist',
+      'a Cross-Platform Engineer',
+      'a Cloud and DevOps Practitioner',
+      'a Performance-Driven Engineer',
+      'an Engineering Graduate',
+    ],
     loop: true,
     startDelay: 1000,
-    backDelay: 2000,
+    backDelay: 3000,
   });
 
   // Scroll to section
