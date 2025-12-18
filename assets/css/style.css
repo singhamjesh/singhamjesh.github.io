@@ -1576,9 +1576,17 @@ footer a {
    ================================================================ */
 
 /* Extra Small Devices (max-width: 480px) */
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .skills-grid-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .homeContainer {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+    height: auto;
   }
 }
 
@@ -1626,6 +1634,14 @@ footer a {
   }
 
   /* Home section adjustments */
+  .homeContainer {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+    height: auto;
+  }
+
   .type {
     font-size: 1rem;
   }
@@ -1731,6 +1747,7 @@ footer a {
   ul.contact-me {
     margin-top: 3rem;
     text-align: center;
+    padding-left: 0;
   }
 
   ul.contact-me li.contact-text {
@@ -1833,29 +1850,16 @@ footer a {
   }
 }
 
-/* Large Devices (max-width: 991px) */
-@media (max-width: 991px) {
-  /* Enhanced Mobile Header */
-  .headerContainer {
-    padding: 12px 0;
-    position: fixed;
-  }
-
-  .skills-grid-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
+/* Large Devices (max-width: 991.98px) - Tablet & Mobile Header */
+@media (max-width: 991.98px) {
   .certificationsContainer .row.justify-content-center > div {
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
   }
-}
-
-/* Large Devices (max-width: 991.98px) - Tablet & Mobile Header */
-@media (max-width: 991.98px) {
   /* Enhanced Header Container */
   .headerContainer {
+    position: fixed;
     padding: 15px 0;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -2121,5 +2125,9 @@ footer a {
     width: 400px;
     max-width: 400px;
     flex: 0 0 400px;
+  }
+
+  .skills-grid-container {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
