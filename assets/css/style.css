@@ -714,6 +714,424 @@ strong {
 }
 
 /* ================================================================
+   Work History Section - Enhanced Styles
+   Add this CSS to your style.css file
+   ================================================================ */
+
+/* Company Header Styles */
+.work-company-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+
+.work-company-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  flex-shrink: 0;
+}
+
+.work-company-icon i {
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+.work-company-name {
+  color: #e6eef8;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.work-company-location {
+  color: #9aa6bf;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.work-company-location i {
+  color: #667eea;
+  margin-right: 5px;
+}
+
+.work-job-title {
+  color: #667eea;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Duration Badge */
+.work-duration-badge {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.2),
+    rgba(118, 75, 162, 0.2)
+  );
+  color: #667eea;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.work-duration-badge i {
+  margin-right: 8px;
+}
+
+.work-years {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #9aa6bf;
+}
+
+.work-years i {
+  color: #667eea;
+  margin-right: 5px;
+}
+
+/* Stats Cards */
+.work-stat-card {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.work-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.work-stat-projects {
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.work-stat-improvement {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.work-stat-team {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.work-stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.work-stat-projects .work-stat-number {
+  color: #667eea;
+}
+
+.work-stat-improvement .work-stat-number {
+  color: #10b981;
+}
+
+.work-stat-team .work-stat-number {
+  color: #a855f7;
+}
+
+.work-stat-label {
+  font-size: 0.9rem;
+  color: #9aa6bf;
+}
+
+/* Projects Header */
+.work-projects-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid rgba(102, 126, 234, 0.3);
+}
+
+.work-projects-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  flex-shrink: 0;
+}
+
+.work-projects-icon i {
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.work-projects-title {
+  color: #e6eef8;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Project Cards */
+.work-project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.work-project-blur {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.work-blur-purple {
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.1),
+    rgba(118, 75, 162, 0.1)
+  );
+}
+
+.work-blur-pink {
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.1),
+    rgba(236, 72, 153, 0.1)
+  );
+}
+
+.work-blur-blue {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1),
+    rgba(37, 99, 235, 0.1)
+  );
+}
+
+.work-blur-orange {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.1),
+    rgba(217, 119, 6, 0.1)
+  );
+}
+
+.work-project-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Project Title with Accent */
+.work-project-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.work-project-accent {
+  width: 8px;
+  height: 40px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.work-accent-purple {
+  background: linear-gradient(180deg, #667eea, #764ba2);
+}
+
+.work-accent-pink {
+  background: linear-gradient(180deg, #a855f7, #ec4899);
+}
+
+.work-accent-blue {
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+}
+
+.work-accent-orange {
+  background: linear-gradient(180deg, #f59e0b, #d97706);
+}
+
+/* Project Metadata Icons */
+.work-project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.work-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.work-meta-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.work-meta-role {
+  background: rgba(168, 85, 247, 0.2);
+}
+
+.work-meta-role i {
+  color: #a855f7;
+}
+
+.work-meta-team {
+  background: rgba(102, 126, 234, 0.2);
+}
+
+.work-meta-team i {
+  color: #667eea;
+}
+
+.work-meta-impact {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+.work-meta-impact i {
+  color: #10b981;
+}
+
+.work-meta-label {
+  font-size: 0.75rem;
+  color: #9aa6bf;
+}
+
+.work-meta-value {
+  font-size: 0.9rem;
+  color: #e6eef8;
+  font-weight: 600;
+}
+
+.work-meta-success {
+  color: #10b981;
+  font-weight: 700;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .work-company-header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .work-company-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .work-company-icon i {
+    font-size: 1.5rem;
+  }
+
+  .work-company-name {
+    font-size: 1.4rem;
+  }
+
+  .work-job-title {
+    font-size: 1.2rem;
+  }
+
+  .work-duration-badge {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+
+  .work-stat-number {
+    font-size: 1.5rem;
+  }
+
+  .work-projects-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .work-projects-icon i {
+    font-size: 1.1rem;
+  }
+
+  .work-projects-title {
+    font-size: 1.3rem;
+  }
+
+  .work-project-meta {
+    gap: 1rem;
+  }
+
+  .work-meta-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .work-company-name {
+    font-size: 1.2rem;
+  }
+
+  .work-job-title {
+    font-size: 1.1rem;
+  }
+
+  .work-stat-card {
+    padding: 0.75rem;
+  }
+
+  .work-stat-number {
+    font-size: 1.3rem;
+  }
+
+  .work-stat-label {
+    font-size: 0.8rem;
+  }
+
+  .work-projects-title {
+    font-size: 1.1rem;
+  }
+
+  .work-project-accent {
+    width: 6px;
+    height: 35px;
+  }
+
+  .work-project-meta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+/* ================================================================
    8. Projects Section
    ================================================================ */
 .project-list {
