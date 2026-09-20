@@ -324,11 +324,16 @@
         ctx.lineTo(x, warp >= 0 ? y + len : y - len);
         ctx.stroke();
       });
+      const homeEl = document.getElementById("top");
       glyphs.forEach((glyph) => {
         glyph.y -= warp * glyph.depth * 0.00028;
         if (glyph.y < -0.1) glyph.y = 1.1;
         if (glyph.y > 1.1) glyph.y = -0.1;
-        drawGlyph(glyph, glyph.x * width, glyph.y * height);
+        const gx = glyph.x * width;
+        const gy = glyph.y * height;
+        const homeBottom = homeEl ? homeEl.getBoundingClientRect().bottom : 0;
+        if (homeBottom > 48 && gy < homeBottom + 48) return;
+        drawGlyph(glyph, gx, gy);
       });
       requestAnimationFrame(draw);
     };
