@@ -18,11 +18,18 @@
       content="Amjesh Kumar Singh, Senior Software Engineer, Technical Lead, Senior Full Stack Developer, React, Next.js, Node.js, Flutter, AWS, Delhi"
     />
     <meta name="author" content="Amjesh Kumar Singh" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
     <link rel="canonical" href="https://singhamjesh.github.io/" />
     <link rel="sitemap" type="application/xml" href="sitemap.xml" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/images/logo.png" />
+    <link rel="author" href="https://www.linkedin.com/in/singhamjesh/" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:url" content="https://singhamjesh.github.io/" />
     <meta
       property="og:title"
@@ -33,11 +40,23 @@
       content="Senior Software Engineer, Technical Lead, and Senior Full Stack Developer with 9+ years building production web, mobile, and cross-platform systems."
     />
     <meta property="og:site_name" content="Amjesh Kumar Singh" />
+    <meta property="profile:first_name" content="Amjesh" />
+    <meta property="profile:last_name" content="Kumar Singh" />
+    <meta property="profile:username" content="singhamjesh" />
     <meta
       property="og:image"
       content="https://singhamjesh.github.io/assets/images/me.png"
     />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1152" />
+    <meta property="og:image:height" content="896" />
+    <meta
+      property="og:image:alt"
+      content="Portrait of Amjesh Kumar Singh"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@singhamjesh" />
+    <meta name="twitter:creator" content="@singhamjesh" />
     <meta
       name="twitter:title"
       content="Amjesh Kumar Singh — Senior Software Engineer | Technical Lead"
@@ -49,6 +68,10 @@
     <meta
       name="twitter:image"
       content="https://singhamjesh.github.io/assets/images/me.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Portrait of Amjesh Kumar Singh"
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -66,21 +89,84 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Amjesh Kumar Singh",
-        "jobTitle": "Senior Software Engineer | Technical Lead | Senior Full Stack Developer",
-        "url": "https://singhamjesh.github.io/",
-        "email": "mailto:singhamjesh.cse@gmail.com",
-        "telephone": "+919910155707",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Delhi",
-          "addressCountry": "IN"
-        },
-        "sameAs": [
-          "https://www.linkedin.com/in/singhamjesh/",
-          "https://github.com/singhamjesh",
-          "https://www.npmjs.com/~amjesh"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://singhamjesh.github.io/#website",
+            "url": "https://singhamjesh.github.io/",
+            "name": "Amjesh Kumar Singh",
+            "description": "Portfolio of Amjesh Kumar Singh, Senior Software Engineer and Technical Lead in Delhi, India.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://singhamjesh.github.io/#person" }
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://singhamjesh.github.io/#profile",
+            "url": "https://singhamjesh.github.io/",
+            "name": "Amjesh Kumar Singh — Senior Software Engineer | Technical Lead",
+            "isPartOf": { "@id": "https://singhamjesh.github.io/#website" },
+            "about": { "@id": "https://singhamjesh.github.io/#person" },
+            "mainEntity": { "@id": "https://singhamjesh.github.io/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://singhamjesh.github.io/#person",
+            "name": "Amjesh Kumar Singh",
+            "alternateName": ["Amjesh", "singhamjesh"],
+            "jobTitle": "Senior Software Engineer | Technical Lead | Senior Full Stack Developer",
+            "description": "Senior Software Engineer and Technical Lead with 9+ years building production web, mobile, and cross-platform systems.",
+            "url": "https://singhamjesh.github.io/",
+            "image": "https://singhamjesh.github.io/assets/images/me.png",
+            "email": "mailto:singhamjesh.cse@gmail.com",
+            "telephone": "+919910155707",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Delhi",
+              "addressCountry": "IN"
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Incaendo Technologies Pvt. Ltd."
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Galgotias University"
+            },
+            "knowsAbout": [
+              "JavaScript",
+              "TypeScript",
+              "React.js",
+              "Next.js",
+              "Node.js",
+              "MongoDB",
+              "AWS",
+              "Flutter",
+              "System design",
+              "Technical leadership"
+            ],
+            "knowsLanguage": ["English", "Hindi"],
+            "hasCredential": [
+              {
+                "@type": "EducationalOccupationalCredential",
+                "name": "Node.js Certification",
+                "credentialCategory": "certificate",
+                "url": "https://www.udemy.com/certificate/UC-5102e3f0-c271-4b4a-a490-1362b8d8bf8c/"
+              },
+              {
+                "@type": "EducationalOccupationalCredential",
+                "name": "Flutter Certification",
+                "credentialCategory": "certificate",
+                "url": "https://www.udemy.com/certificate/UC-c4267693-3ede-474c-8c7a-f4661c7abaa7/"
+              }
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/in/singhamjesh/",
+              "https://github.com/singhamjesh",
+              "https://twitter.com/singhamjesh",
+              "https://stackoverflow.com/users/14610272/amjesh-singh",
+              "https://www.npmjs.com/~amjesh"
+            ]
+          }
         ]
       }
     </script>
@@ -166,7 +252,7 @@
             <a
               class="linkedIn"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               href="https://www.linkedin.com/in/singhamjesh/"
               title="LinkedIn"
               aria-label="LinkedIn"
@@ -177,7 +263,7 @@
             <a
               class="twitter"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               href="https://twitter.com/singhamjesh"
               title="Twitter"
               aria-label="Twitter"
@@ -188,7 +274,7 @@
             <a
               class="github"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               href="https://github.com/singhamjesh"
               title="GitHub"
               aria-label="GitHub"
@@ -199,7 +285,7 @@
             <a
               class="stackoverflow"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               href="https://stackoverflow.com/users/14610272/amjesh-singh"
               title="Stack Overflow"
               aria-label="Stack Overflow"
@@ -210,7 +296,7 @@
             <a
               class="npm"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               href="https://www.npmjs.com/~amjesh"
               title="npm"
               aria-label="npm"
@@ -220,7 +306,12 @@
         </ul>
       </div>
       <div class="cvDownloadBtn">
-        <a target="_blank" href="assets/amjesh_cv.pdf" download="amjesh_cv.pdf">
+        <a
+          target="_blank"
+          href="assets/amjesh_cv.pdf"
+          download="amjesh_cv.pdf"
+          data-track="cv-download"
+        >
           <i class="fas fa-paper-plane" aria-hidden="true"></i>
           <span>Hire Me</span>
         </a>
@@ -1417,7 +1508,7 @@
                 <a
                   class="linkedIn"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="me noopener noreferrer"
                   href="https://www.linkedin.com/in/singhamjesh/"
                   title="LinkedIn"
                   aria-label="LinkedIn"
@@ -1428,7 +1519,7 @@
                 <a
                   class="github"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="me noopener noreferrer"
                   href="https://github.com/singhamjesh"
                   title="GitHub"
                   aria-label="GitHub"
@@ -1439,7 +1530,7 @@
                 <a
                   class="npm"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="me noopener noreferrer"
                   href="https://www.npmjs.com/~amjesh"
                   title="npm"
                   aria-label="npm"
@@ -1457,7 +1548,12 @@
               <span class="tile-label">Phone</span>
               <strong>+91 9910155707</strong>
             </a>
-            <a class="contact-tile" href="assets/amjesh_cv.pdf" download>
+            <a
+              class="contact-tile"
+              href="assets/amjesh_cv.pdf"
+              download
+              data-track="cv-download"
+            >
               <span class="tile-label">Resume</span>
               <strong>Download PDF</strong>
             </a>
@@ -1470,6 +1566,6 @@
       <p>© <span id="year"></span> Amjesh Kumar Singh</p>
     </footer>
 
-    <script src="assets/js/script.js?v=about-contact" defer></script>
+    <script src="assets/js/script.js?v=seo-analytics" defer></script>
   </body>
 </html>

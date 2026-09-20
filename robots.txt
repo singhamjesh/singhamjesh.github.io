@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /assets/plugin/
+Disallow: /pages/
 
 Sitemap: https://singhamjesh.github.io/sitemap.xml
