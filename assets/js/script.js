@@ -1,24 +1,26 @@
 (() => {
-  const progress = document.getElementById("scroll-progress");
-  const navToggle = document.getElementById("nav-toggle");
-  const navMenu = document.getElementById("nav-menu");
-  const navLiquid = document.getElementById("nav-liquid");
-  const navLinks = document.querySelectorAll(".nav-links a");
-  const year = document.getElementById("year");
-  const typingEl = document.getElementById("headingTyping");
-  const canvas = document.getElementById("scroll-canvas");
-  const orb = document.getElementById("scroll-orb");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const progress = document.getElementById('scroll-progress');
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const navLiquid = document.getElementById('nav-liquid');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const year = document.getElementById('year');
+  const typingEl = document.getElementById('headingTyping');
+  const canvas = document.getElementById('scroll-canvas');
+  const orb = document.getElementById('scroll-orb');
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches;
 
   // Paste your GA4 Measurement ID (G-XXXXXXXX). Leave blank until created.
   // Reports show visits, country/city, device, referrer, and CV downloads — not names or raw IPs.
-  const GA4_MEASUREMENT_ID = "";
+  const GA4_MEASUREMENT_ID = 'G-YF72PXSVV8';
 
-  const isProdHost = location.hostname === "singhamjesh.github.io";
+  const isProdHost = location.hostname === 'singhamjesh.github.io';
 
   const trackEvent = (name, params) => {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", name, params || {});
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, params || {});
     }
   };
 
@@ -28,9 +30,9 @@
     window.gtag = function gtag() {
       window.dataLayer.push(arguments);
     };
-    window.gtag("js", new Date());
-    window.gtag("config", id, { anonymize_ip: true });
-    const script = document.createElement("script");
+    window.gtag('js', new Date());
+    window.gtag('config', id, { anonymize_ip: true });
+    const script = document.createElement('script');
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
     document.head.appendChild(script);
@@ -39,33 +41,33 @@
   loadGa4(GA4_MEASUREMENT_ID);
 
   document.querySelectorAll("[data-track='cv-download']").forEach((el) => {
-    el.addEventListener("click", () => {
-      trackEvent("file_download", {
-        file_name: "amjesh_cv.pdf",
-        file_extension: "pdf",
-        link_url: el.getAttribute("href") || "",
+    el.addEventListener('click', () => {
+      trackEvent('file_download', {
+        file_name: 'amjesh_cv.pdf',
+        file_extension: 'pdf',
+        link_url: el.getAttribute('href') || '',
       });
     });
   });
 
-  window.addEventListener("hashchange", () => {
-    const section = (location.hash || "#top").slice(1) || "top";
-    trackEvent("section_view", { section_id: section });
+  window.addEventListener('hashchange', () => {
+    const section = (location.hash || '#top').slice(1) || 'top';
+    trackEvent('section_view', { section_id: section });
   });
 
   if (year) year.textContent = String(new Date().getFullYear());
 
   const closeNav = () => {
-    document.body.classList.remove("nav-open");
+    document.body.classList.remove('nav-open');
     if (navToggle) {
-      navToggle.setAttribute("aria-expanded", "false");
-      navToggle.setAttribute("aria-label", "Open menu");
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
     }
   };
 
   const menuVisible = () =>
-    window.matchMedia("(min-width: 720px)").matches ||
-    document.body.classList.contains("nav-open");
+    window.matchMedia('(min-width: 720px)').matches ||
+    document.body.classList.contains('nav-open');
 
   let liquidRect = null;
   let liquidTimer = 0;
@@ -89,12 +91,12 @@
     if (!animate || reduceMotion || !liquidRect) {
       apply(next);
       liquidRect = next;
-      navLiquid.classList.add("is-ready");
+      navLiquid.classList.add('is-ready');
       return;
     }
     const dx = next.x - liquidRect.x;
     const dy = next.y - liquidRect.y;
-    navLiquid.classList.add("is-moving");
+    navLiquid.classList.add('is-moving');
     if (dx > 2) {
       apply({
         x: liquidRect.x,
@@ -129,7 +131,7 @@
     window.clearTimeout(liquidTimer);
     liquidTimer = window.setTimeout(() => {
       apply(next);
-      navLiquid.classList.remove("is-moving");
+      navLiquid.classList.remove('is-moving');
       liquidRect = next;
     }, 180);
   };
@@ -140,13 +142,13 @@
   };
 
   const activeLink = () =>
-    document.querySelector(".nav-links a.is-active") || navLinks[0];
+    document.querySelector('.nav-links a.is-active') || navLinks[0];
 
   if (navToggle) {
-    navToggle.addEventListener("click", () => {
-      const open = document.body.classList.toggle("nav-open");
-      navToggle.setAttribute("aria-expanded", String(open));
-      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    navToggle.addEventListener('click', () => {
+      const open = document.body.classList.toggle('nav-open');
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       if (open) {
         requestAnimationFrame(() => moveLiquidTo(activeLink(), false));
       }
@@ -154,41 +156,50 @@
   }
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
+    link.addEventListener('click', () => {
       navLinks.forEach((item) => {
         const on = item === link;
-        item.classList.toggle("is-active", on);
-        if (on) item.setAttribute("aria-current", "location");
-        else item.removeAttribute("aria-current");
+        item.classList.toggle('is-active', on);
+        if (on) item.setAttribute('aria-current', 'location');
+        else item.removeAttribute('aria-current');
       });
       moveLiquidTo(link, true);
       closeNav();
     });
-    link.addEventListener("mouseenter", () => {
-      if (reduceMotion || window.matchMedia("(hover: hover)").matches === false) return;
-      if (!window.matchMedia("(min-width: 720px)").matches) return;
+    link.addEventListener('mouseenter', () => {
+      if (reduceMotion || window.matchMedia('(hover: hover)').matches === false)
+        return;
+      if (!window.matchMedia('(min-width: 720px)').matches) return;
       moveLiquidTo(link, true);
     });
   });
 
   if (navMenu) {
-    navMenu.addEventListener("mouseleave", () => {
-      if (!window.matchMedia("(min-width: 720px)").matches) return;
+    navMenu.addEventListener('mouseleave', () => {
+      if (!window.matchMedia('(min-width: 720px)').matches) return;
       moveLiquidTo(activeLink(), true);
     });
   }
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeNav();
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeNav();
   });
 
-  const sections = ["top", "about", "skills", "work", "projects", "education", "contact"]
+  const sections = [
+    'top',
+    'about',
+    'skills',
+    'work',
+    'projects',
+    'education',
+    'contact',
+  ]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 
   const setActive = () => {
     const offset = window.innerHeight * 0.28;
-    let current = "top";
+    let current = 'top';
     sections.forEach((section) => {
       if (section.getBoundingClientRect().top - offset <= 0) {
         current = section.id;
@@ -197,15 +208,15 @@
     let nextLink = null;
     navLinks.forEach((link) => {
       const active = link.dataset.section === current;
-      link.classList.toggle("is-active", active);
+      link.classList.toggle('is-active', active);
       if (active) {
         nextLink = link;
-        link.setAttribute("aria-current", "location");
+        link.setAttribute('aria-current', 'location');
       } else {
-        link.removeAttribute("aria-current");
+        link.removeAttribute('aria-current');
       }
     });
-    if (nextLink && !navMenu?.matches(":hover")) moveLiquidTo(nextLink, true);
+    if (nextLink && !navMenu?.matches(':hover')) moveLiquidTo(nextLink, true);
   };
 
   const updateProgress = () => {
@@ -217,7 +228,7 @@
     if (orb) {
       const rail = orb.parentElement;
       const travel = rail ? rail.clientHeight - orb.offsetHeight : 0;
-      orb.style.setProperty("--orb-y", `${(value / 100) * travel}px`);
+      orb.style.setProperty('--orb-y', `${(value / 100) * travel}px`);
     }
   };
 
@@ -230,19 +241,19 @@
     lastY = y;
     const down = velocity > 1;
     const up = velocity < -1;
-    document.body.classList.toggle("scroll-down", down);
-    document.body.classList.toggle("scroll-up", up);
-    document.body.classList.toggle("is-boosting", Math.abs(velocity) > 28);
+    document.body.classList.toggle('scroll-down', down);
+    document.body.classList.toggle('scroll-up', up);
+    document.body.classList.toggle('is-boosting', Math.abs(velocity) > 28);
     if (orb) {
       const boost = Math.min(64, Math.abs(velocity) * 1.8 + 10);
       if (velocity >= 0) {
-        orb.style.setProperty("--trail-dir", "180deg");
-        orb.style.setProperty("--trail-top", "12px");
-        orb.style.setProperty("--trail", `${boost}px`);
+        orb.style.setProperty('--trail-dir', '180deg');
+        orb.style.setProperty('--trail-top', '12px');
+        orb.style.setProperty('--trail', `${boost}px`);
       } else {
-        orb.style.setProperty("--trail-dir", "0deg");
-        orb.style.setProperty("--trail-top", `${-boost}px`);
-        orb.style.setProperty("--trail", `${boost}px`);
+        orb.style.setProperty('--trail-dir', '0deg');
+        orb.style.setProperty('--trail-top', `${-boost}px`);
+        orb.style.setProperty('--trail', `${boost}px`);
       }
     }
   };
@@ -253,8 +264,8 @@
     setActive();
   };
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", () => {
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
     liquidRect = null;
     moveLiquidTo(activeLink(), false);
     updateProgress();
@@ -270,7 +281,7 @@
   }
 
   if (!reduceMotion && canvas && canvas.getContext) {
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     const stars = Array.from({ length: 72 }, () => ({
       x: Math.random(),
       y: Math.random(),
@@ -278,22 +289,70 @@
       size: 0.5 + Math.random() * 1.5,
     }));
     const glyphSpecs = [
-      { src: "https://cdn.simpleicons.org/javascript/F7DF1E", label: "JS", color: "#F7DF1E" },
-      { src: "https://cdn.simpleicons.org/typescript/3178C6", label: "TS", color: "#3178C6" },
-      { src: "https://cdn.simpleicons.org/react/61DAFB", label: "React", color: "#61DAFB" },
-      { src: "https://cdn.simpleicons.org/nodedotjs/5FA04E", label: "Node", color: "#5FA04E" },
-      { src: "https://cdn.simpleicons.org/nextdotjs/FFFFFF", label: "Next", color: "#E8EEF7" },
-      { src: "https://cdn.simpleicons.org/mongodb/47A248", label: "Mongo", color: "#47A248" },
-      { src: "https://cdn.simpleicons.org/docker/2496ED", label: "Docker", color: "#2496ED" },
-      { src: "https://cdn.simpleicons.org/flutter/02569B", label: "Flutter", color: "#54C5F8" },
-      { src: "https://cdn.simpleicons.org/git/F05032", label: "Git", color: "#F05032" },
-      { src: "https://cdn.simpleicons.org/html5/E34F26", label: "HTML", color: "#E34F26" },
-      { src: "https://cdn.simpleicons.org/css3/1572B6", label: "CSS", color: "#1572B6" },
-      { src: "https://cdn.simpleicons.org/npm/CB3837", label: "npm", color: "#CB3837" },
-      { label: "{ }", color: "#8ec5ff" },
-      { label: "</>", color: "#bae6fd" },
-      { label: "=>", color: "#93c5fd" },
-      { label: "AWS", color: "#FF9900" },
+      {
+        src: 'https://cdn.simpleicons.org/javascript/F7DF1E',
+        label: 'JS',
+        color: '#F7DF1E',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/typescript/3178C6',
+        label: 'TS',
+        color: '#3178C6',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/react/61DAFB',
+        label: 'React',
+        color: '#61DAFB',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/nodedotjs/5FA04E',
+        label: 'Node',
+        color: '#5FA04E',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/nextdotjs/FFFFFF',
+        label: 'Next',
+        color: '#E8EEF7',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/mongodb/47A248',
+        label: 'Mongo',
+        color: '#47A248',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/docker/2496ED',
+        label: 'Docker',
+        color: '#2496ED',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/flutter/02569B',
+        label: 'Flutter',
+        color: '#54C5F8',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/git/F05032',
+        label: 'Git',
+        color: '#F05032',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/html5/E34F26',
+        label: 'HTML',
+        color: '#E34F26',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/css3/1572B6',
+        label: 'CSS',
+        color: '#1572B6',
+      },
+      {
+        src: 'https://cdn.simpleicons.org/npm/CB3837',
+        label: 'npm',
+        color: '#CB3837',
+      },
+      { label: '{ }', color: '#8ec5ff' },
+      { label: '</>', color: '#bae6fd' },
+      { label: '=>', color: '#93c5fd' },
+      { label: 'AWS', color: '#FF9900' },
     ];
     const glyphCount = window.innerWidth < 720 ? 10 : glyphSpecs.length;
     const glyphs = glyphSpecs.slice(0, glyphCount).map((spec, i) => {
@@ -336,20 +395,24 @@
         ctx.drawImage(glyph.img, -size / 2, -size / 2, size, size);
       } else {
         ctx.font = `600 ${Math.max(11, size * 0.62)}px Inter, ui-monospace, monospace`;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillStyle = glyph.color;
         ctx.fillText(glyph.label, 0, 0);
       }
       ctx.restore();
     };
     resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener('resize', resizeCanvas);
     const draw = () => {
       warp += (velocity - warp) * 0.14;
       velocity *= 0.9;
       if (Math.abs(velocity) < 0.2 && Math.abs(warp) < 0.35) {
-        document.body.classList.remove("scroll-down", "scroll-up", "is-boosting");
+        document.body.classList.remove(
+          'scroll-down',
+          'scroll-up',
+          'is-boosting',
+        );
       }
       ctx.clearRect(0, 0, width, height);
       const streak = Math.min(42, Math.abs(warp) * 0.55);
@@ -367,7 +430,7 @@
         ctx.lineTo(x, warp >= 0 ? y + len : y - len);
         ctx.stroke();
       });
-      const homeEl = document.getElementById("top");
+      const homeEl = document.getElementById('top');
       glyphs.forEach((glyph) => {
         glyph.y -= warp * glyph.depth * 0.00028;
         if (glyph.y < -0.1) glyph.y = 1.1;
@@ -383,39 +446,39 @@
     requestAnimationFrame(draw);
   }
 
-  const reveals = document.querySelectorAll(".reveal");
+  const reveals = document.querySelectorAll('.reveal');
   if (reduceMotion) {
-    reveals.forEach((el) => el.classList.add("is-visible"));
-  } else if ("IntersectionObserver" in window) {
+    reveals.forEach((el) => el.classList.add('is-visible'));
+  } else if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            entry.target.classList.add('is-visible');
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.16, rootMargin: '0px 0px -8% 0px' },
     );
     reveals.forEach((el) => observer.observe(el));
     setTimeout(() => {
-      reveals.forEach((el) => el.classList.add("is-visible"));
+      reveals.forEach((el) => el.classList.add('is-visible'));
     }, 900);
   } else {
-    reveals.forEach((el) => el.classList.add("is-visible"));
+    reveals.forEach((el) => el.classList.add('is-visible'));
   }
 
   const animateCount = (el) => {
     const target = Number(el.dataset.count || 0);
-    const suffix = el.dataset.suffix || "";
+    const suffix = el.dataset.suffix || '';
     if (reduceMotion) {
       el.textContent = `${target}${suffix}`;
-      el.dataset.counted = "1";
+      el.dataset.counted = '1';
       return;
     }
     if (el.dataset.counted) return;
-    el.dataset.counted = "1";
+    el.dataset.counted = '1';
     const duration = 1100;
     const start = performance.now();
     const tick = (now) => {
@@ -427,10 +490,10 @@
     requestAnimationFrame(tick);
   };
 
-  const counters = document.querySelectorAll(".stat-value[data-count]");
+  const counters = document.querySelectorAll('.stat-value[data-count]');
   if (reduceMotion) {
     counters.forEach(animateCount);
-  } else if ("IntersectionObserver" in window) {
+  } else if ('IntersectionObserver' in window) {
     const countObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -440,7 +503,7 @@
           }
         });
       },
-      { threshold: 0.35 }
+      { threshold: 0.35 },
     );
     counters.forEach((el) => countObserver.observe(el));
     setTimeout(() => {
@@ -452,9 +515,12 @@
     counters.forEach(animateCount);
   }
 
-  if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    document.querySelectorAll(".tilt").forEach((card) => {
-      card.addEventListener("mousemove", (event) => {
+  if (
+    !reduceMotion &&
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  ) {
+    document.querySelectorAll('.tilt').forEach((card) => {
+      card.addEventListener('mousemove', (event) => {
         const rect = card.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width;
         const y = (event.clientY - rect.top) / rect.height;
@@ -462,24 +528,24 @@
         const rotateX = (0.5 - y) * 8;
         card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
       });
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
       });
     });
   }
 
   if (typingEl) {
-    const roles = Array.from(typingEl.querySelectorAll(".type-role"));
-    const sizer = typingEl.querySelector(".type-sizer");
+    const roles = Array.from(typingEl.querySelectorAll('.type-role'));
+    const sizer = typingEl.querySelector('.type-sizer');
     if (!roles.length) return;
 
-    const line = typingEl.closest(".type-line") || typingEl.parentElement;
+    const line = typingEl.closest('.type-line') || typingEl.parentElement;
     const measureText = (text) => {
-      const probe = document.createElement("span");
-      probe.setAttribute("aria-hidden", "true");
+      const probe = document.createElement('span');
+      probe.setAttribute('aria-hidden', 'true');
       probe.textContent = text;
       probe.style.cssText =
-        "position:absolute;left:0;top:0;visibility:hidden;white-space:nowrap;pointer-events:none";
+        'position:absolute;left:0;top:0;visibility:hidden;white-space:nowrap;pointer-events:none';
       line.appendChild(probe);
       const width = probe.getBoundingClientRect().width;
       probe.remove();
@@ -506,12 +572,12 @@
       }
     };
     startFit();
-    window.addEventListener("resize", fitRoles);
+    window.addEventListener('resize', fitRoles);
 
     if (reduceMotion) {
       roles.forEach((role, i) => {
-        role.classList.toggle("is-current", i === 0);
-        role.classList.remove("is-leaving");
+        role.classList.toggle('is-current', i === 0);
+        role.classList.remove('is-leaving');
       });
       return;
     }
@@ -520,10 +586,10 @@
       const current = roles[index];
       const nextIndex = (index + 1) % roles.length;
       const next = roles[nextIndex];
-      current.classList.remove("is-current");
-      current.classList.add("is-leaving");
-      next.classList.add("is-current");
-      window.setTimeout(() => current.classList.remove("is-leaving"), 560);
+      current.classList.remove('is-current');
+      current.classList.add('is-leaving');
+      next.classList.add('is-current');
+      window.setTimeout(() => current.classList.remove('is-leaving'), 560);
       index = nextIndex;
     };
     window.setInterval(swap, 3400);
