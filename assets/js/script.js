@@ -12,33 +12,11 @@
     '(prefers-reduced-motion: reduce)',
   ).matches;
 
-  // Paste your GA4 Measurement ID (G-XXXXXXXX). Leave blank until created.
-  // Reports show visits, country/city, device, referrer, and CV downloads — not names or raw IPs.
-  const GA4_MEASUREMENT_ID = 'G-YF72PXSVV8';
-
-  const isProdHost = location.hostname === 'singhamjesh.github.io';
-
   const trackEvent = (name, params) => {
     if (typeof window.gtag === 'function') {
       window.gtag('event', name, params || {});
     }
   };
-
-  const loadGa4 = (id) => {
-    if (!isProdHost || !id || !/^G-[A-Z0-9]+$/i.test(id)) return;
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
-    };
-    window.gtag('js', new Date());
-    window.gtag('config', id, { anonymize_ip: true });
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
-    document.head.appendChild(script);
-  };
-
-  loadGa4(GA4_MEASUREMENT_ID);
 
   document.querySelectorAll("[data-track='cv-download']").forEach((el) => {
     el.addEventListener('click', () => {
