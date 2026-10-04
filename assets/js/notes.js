@@ -249,6 +249,130 @@
   scrollEl.addEventListener('pointerup', endPan);
   scrollEl.addEventListener('pointercancel', endPan);
 
+  let pinch = null;
+
+  function touchSpan(touches) {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.hypot(dx, dy);
+  }
+
+  function touchCenter(touches) {
+    return {
+      x: (touches[0].clientX + touches[1].clientX) / 2,
+      y: (touches[0].clientY + touches[1].clientY) / 2,
+    };
+  }
+
+  function startPinch(source, distance, point) {
+    if (!state.doc || pinch || distance < 1) return;
+    const rect = pagesRoot.getBoundingClientRect();
+    pinch = {
+      source,
+      distance,
+      zoom: state.zoom,
+      point,
+      originX: point.x - rect.left,
+      originY: point.y - rect.top,
+      preview: state.zoom,
+    };
+  }
+
+  function updatePinch(distance, point) {
+    if (!pinch || pinch.distance < 1) return;
+    const preview = clampZoom(pinch.zoom * (distance / pinch.distance));
+    const factor = preview / pinch.zoom;
+    pinch.preview = preview;
+    pinch.point = point;
+    pagesRoot.style.transformOrigin = `${pinch.originX}px ${pinch.originY}px`;
+    pagesRoot.style.transform = Math.abs(factor - 1) < 0.001 ? '' : `scale(${factor})`;
+    const doc = state.doc;
+    if (!doc) return;
+    const end = Math.min(doc.numPages, state.page + (state.mode === 'spread' ? 1 : 0));
+    const label = end > state.page ? `Pages ${state.page}–${end}` : `Page ${state.page}`;
+    chip.textContent = `${label} of ${doc.numPages} · ${Math.round(preview * 100)}%`;
+  }
+
+  function finishPinch() {
+    if (!pinch) return;
+    const preview = pinch.preview;
+    const point = pinch.point;
+    pinch = null;
+    pagesRoot.style.transform = '';
+    pagesRoot.style.transformOrigin = '';
+    if (Math.abs(preview - state.zoom) >= 0.01) setZoom(preview, point);
+    else updateCurrentPage();
+  }
+
+  scrollEl.addEventListener(
+    'touchstart',
+    (event) => {
+      if (event.touches.length !== 2 || !state.doc) return;
+      if (event.target.closest('button, a, input')) return;
+      event.preventDefault();
+      startPinch('touch', touchSpan(event.touches), touchCenter(event.touches));
+    },
+    { passive: false },
+  );
+  scrollEl.addEventListener(
+    'touchmove',
+    (event) => {
+      if (!pinch || pinch.source !== 'touch' || event.touches.length < 2) return;
+      event.preventDefault();
+      updatePinch(touchSpan(event.touches), touchCenter(event.touches));
+    },
+    { passive: false },
+  );
+  scrollEl.addEventListener(
+    'touchend',
+    (event) => {
+      if (!pinch || pinch.source !== 'touch' || event.touches.length >= 2) return;
+      finishPinch();
+    },
+    { passive: false },
+  );
+  scrollEl.addEventListener(
+    'touchcancel',
+    () => {
+      if (pinch && pinch.source === 'touch') finishPinch();
+    },
+    { passive: false },
+  );
+
+  scrollEl.addEventListener(
+    'gesturestart',
+    (event) => {
+      event.preventDefault();
+      if (pinch || !state.doc) return;
+      const rect = scrollEl.getBoundingClientRect();
+      startPinch('gesture', 100, {
+        x: event.clientX || rect.left + rect.width / 2,
+        y: event.clientY || rect.top + rect.height / 2,
+      });
+    },
+    { passive: false },
+  );
+  scrollEl.addEventListener(
+    'gesturechange',
+    (event) => {
+      event.preventDefault();
+      if (!pinch || pinch.source !== 'gesture') return;
+      updatePinch(100 * (event.scale || 1), {
+        x: event.clientX || pinch.point.x,
+        y: event.clientY || pinch.point.y,
+      });
+    },
+    { passive: false },
+  );
+  scrollEl.addEventListener(
+    'gestureend',
+    (event) => {
+      event.preventDefault();
+      if (pinch && pinch.source === 'gesture') finishPinch();
+    },
+    { passive: false },
+  );
+
   let resizeTimer = 0;
   window.addEventListener('resize', () => {
     if (!state.doc) return;
@@ -516,6 +640,11 @@
         >
           <span class="toc-num">${item.id}</span>
           <span class="toc-name">${esc(item.title)}</span>
+          <span class="toc-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14">
+              <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
         </button>
       `,
       )
@@ -607,6 +736,8 @@
   async function layoutPages(keepPlace) {
     const doc = state.doc;
     if (!doc) return;
+    pagesRoot.style.transform = '';
+    pagesRoot.style.transformOrigin = '';
     const gen = ++state.generation;
     cancelRenders();
     const ratioY = scrollEl.scrollHeight

@@ -26,7 +26,7 @@
       href="../assets/plugin/fontawesome-5.15.2-web/css/all.min.css"
     />
     <link rel="stylesheet" href="../assets/css/style.css?v=notes-nav" />
-    <link rel="stylesheet" href="../assets/css/notes.css?v=notes-9" />
+    <link rel="stylesheet" href="../assets/css/notes.css?v=notes-12" />
   </head>
   <body class="notes-body">
     <a class="skip-link" href="#notes-main">Skip to content</a>
@@ -117,8 +117,14 @@
             </div>
 
             <div class="pdf-loading" id="pdf-loading" hidden>
-              <span class="pdf-spinner" aria-hidden="true"></span>
-              <p>Opening chapter…</p>
+              <div class="pdf-shimmer" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p class="sr-only">Opening chapter…</p>
             </div>
             <p class="pdf-error" id="pdf-error" role="alert" hidden></p>
 
@@ -199,6 +205,6 @@
     </noscript>
 
     <script src="../assets/plugin/pdfjs/pdf.min.js"></script>
-    <script src="../assets/js/notes.js?v=notes-9"></script>
+    <script src="../assets/js/notes.js?v=notes-13"></script>
   </body>
 </html>
