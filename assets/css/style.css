@@ -1997,6 +1997,22 @@ ul.contact-me.about-socials li.social-media a i {
   }
 }
 
+@media (min-width: 720px) and (max-width: 980px) {
+  .nav {
+    gap: 0.4rem;
+    padding-left: 0.7rem;
+  }
+
+  .nav-links {
+    gap: 0;
+  }
+
+  .nav-links a {
+    padding: 0.4rem 0.45rem;
+    font-size: 0.8rem;
+  }
+}
+
 @media (max-width: 719px) {
   html,
   body {

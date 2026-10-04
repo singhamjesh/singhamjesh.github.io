@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#07080c" />
+    <title>Notes — Amjesh Kumar Singh</title>
+    <meta
+      name="description"
+      content="Read-only study notes by Amjesh Kumar Singh: digital electronics, computer networks, and system design."
+    />
+    <meta name="author" content="Amjesh Kumar Singh" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://singhamjesh.github.io/notes/" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="apple-touch-icon" href="../assets/images/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/plugin/fontawesome-5.15.2-web/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css?v=notes-nav" />
+    <link rel="stylesheet" href="../assets/css/notes.css?v=notes-9" />
+  </head>
+  <body class="notes-body">
+    <a class="skip-link" href="#notes-main">Skip to content</a>
+    <div class="page-bg" aria-hidden="true">
+      <span class="blob blob-a"></span>
+      <span class="blob blob-b"></span>
+      <span class="blob blob-c"></span>
+    </div>
+
+    <header class="site-header">
+      <nav class="nav glass" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img src="../assets/images/logo.png" width="47" height="43" alt="" />
+          <span>Amjesh</span>
+        </a>
+        <div class="nav-menu" id="nav-menu">
+          <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./" id="notes-home" aria-current="page">Notes</a></li>
+          </ul>
+        </div>
+        <div class="nav-actions">
+          <button
+            class="nav-toggle"
+            id="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Open menu"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="notes-main" id="notes-main">
+      <section class="notes-library" id="library" aria-labelledby="library-title">
+        <p class="eyebrow">Study notes</p>
+        <h1 id="library-title">Notes</h1>
+        <p class="notes-lead">
+          Pick a subject, then a chapter. Pages stay on screen so you can read
+          straight through.
+        </p>
+        <div class="subject-grid" id="subject-grid"></div>
+      </section>
+
+      <section class="notes-reader" id="reader" hidden aria-labelledby="reader-chapter">
+        <div class="reader-bar">
+          <button class="reader-back" id="back-library" type="button" aria-label="Back to notes">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="reader-heading">
+            <p class="reader-kicker" id="reader-kicker"></p>
+            <h2 id="reader-chapter"></h2>
+          </div>
+          <div class="chapter-arrows">
+            <button type="button" id="prev-chapter" aria-label="Previous chapter" title="Previous chapter" disabled>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path d="M14.5 6 8.5 12l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button type="button" id="next-chapter" aria-label="Next chapter" title="Next chapter" disabled>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path d="M9.5 6 15.5 12l-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+          <button class="toc-open" id="toc-open" type="button" aria-label="Chapters" title="Chapters" aria-expanded="false" aria-controls="toc">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M9 6h11M9 12h11M9 18h11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="reader-frame">
+          <aside class="toc-panel glass" id="toc" aria-label="Chapters">
+            <div class="toc-list" id="toc-list" role="list"></div>
+          </aside>
+
+          <div class="pdf-stage" id="pdf-stage">
+            <div class="pdf-scroll" id="pdf-scroll" tabindex="0">
+              <div class="pdf-pages" id="pdf-pages" aria-label="Chapter pages"></div>
+            </div>
+
+            <div class="pdf-loading" id="pdf-loading" hidden>
+              <span class="pdf-spinner" aria-hidden="true"></span>
+              <p>Opening chapter…</p>
+            </div>
+            <p class="pdf-error" id="pdf-error" role="alert" hidden></p>
+
+            <div class="pdf-dock" id="pdf-dock">
+              <button
+                class="pdf-dock-toggle"
+                id="pdf-dock-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="pdf-controls"
+                aria-label="Show page controls"
+                title="Show page controls"
+              >
+                <svg class="dock-show" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path d="M14 6 8 12l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <svg class="dock-hide" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            <div class="pdf-controls" id="pdf-controls" role="toolbar" aria-label="Page controls">
+              <button type="button" data-action="zoom-in" title="Zoom in" aria-label="Zoom in">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+              </button>
+              <button type="button" data-action="zoom-out" title="Zoom out" aria-label="Zoom out">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+              </button>
+              <button type="button" data-action="full" title="Full screen" aria-label="Full screen" aria-pressed="false">
+                <svg class="fs-enter" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <svg class="fs-exit" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <span class="pdf-rule" aria-hidden="true"></span>
+              <button type="button" data-action="single" title="One page view" aria-label="One page view" aria-pressed="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <rect x="7" y="3.5" width="10" height="17" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+              </button>
+              <button type="button" data-action="spread" title="Double page view" aria-label="Double page view" aria-pressed="false">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <rect x="3" y="4" width="8" height="16" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+                  <rect x="13" y="4" width="8" height="16" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+              </button>
+              <span class="pdf-rule" aria-hidden="true"></span>
+              <button type="button" data-action="prev" title="Previous page" aria-label="Previous page">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path d="M6 14l6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button type="button" data-action="next" title="Next page" aria-label="Next page">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path d="M6 10l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+            </div>
+            <p class="pdf-chip glass" id="pdf-chip" aria-live="polite"></p>
+          </div>
+        </div>
+        <button class="toc-backdrop" id="toc-backdrop" type="button" hidden aria-label="Close chapters"></button>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="notes-footer">
+      <p>© <span id="year"></span> Amjesh Kumar Singh</p>
+    </footer>
+
+    <noscript>
+      <p class="notes-noscript">Turn on JavaScript to read these notes.</p>
+    </noscript>
+
+    <script src="../assets/plugin/pdfjs/pdf.min.js"></script>
+    <script src="../assets/js/notes.js?v=notes-9"></script>
+  </body>
+</html>
