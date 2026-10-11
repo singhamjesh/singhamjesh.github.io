@@ -125,7 +125,6 @@
           'Master Formula Sheet and Mixed Practice',
           'CN_Ch17_Master_Formula_Sheet_and_Mixed_Practice.pdf',
         ],
-        ['18', 'Complete GATE 2027 Notes', 'CN_Complete_GATE2027_Notes.pdf'],
       ],
     },
     {
@@ -196,46 +195,39 @@
           'Syllabus Map and Strategy',
           'COA_Ch01_Syllabus_Map_and_Strategy.pdf',
         ],
-        ['02', 'Computer Fundamentals', 'COA_Ch02_Computer_Fundamentals.pdf'],
-        ['03', 'Number Systems', 'COA_Ch03_Number_Systems.pdf'],
-        ['04', 'Computer Arithmetic', 'COA_Ch04_Computer_Arithmetic.pdf'],
-        ['05', 'CPU and Control Unit', 'COA_Ch05_CPU_and_Control_Unit.pdf'],
+        ['02', 'CPU Performance', 'COA_Ch02_CPU_Performance.pdf'],
+        ['03', 'Number Representation', 'COA_Ch03_Number_Representation.pdf'],
         [
-          '06',
-          'Instruction Set and Addressing',
-          'COA_Ch06_Instruction_Set_and_Addressing.pdf',
+          '04',
+          'Instruction Set and Formats',
+          'COA_Ch04_Instruction_Set_and_Formats.pdf',
         ],
-        ['07', 'Memory Hierarchy', 'COA_Ch07_Memory_Hierarchy.pdf'],
+        ['05', 'Addressing Modes', 'COA_Ch05_Addressing_Modes.pdf'],
+        ['06', 'ALU Design', 'COA_Ch06_ALU_Design.pdf'],
+        ['07', 'Control Unit', 'COA_Ch07_Control_Unit.pdf'],
         [
           '08',
-          'Cache and Virtual Memory',
-          'COA_Ch08_Cache_and_Virtual_Memory.pdf',
+          'Pipelining and Hazards',
+          'COA_Ch08_Pipelining_and_Hazards.pdf',
         ],
         [
           '09',
-          'Secondary Storage and I/O',
-          'COA_Ch09_Secondary_Storage_and_IO.pdf',
+          'Memory Hierarchy and Interfacing',
+          'COA_Ch09_Memory_Hierarchy_and_Interfacing.pdf',
         ],
-        [
-          '10',
-          'Pipelining and Parallel',
-          'COA_Ch10_Pipelining_and_Parallel.pdf',
-        ],
+        ['10', 'Cache Mapping', 'COA_Ch10_Cache_Mapping.pdf'],
         [
           '11',
-          'Microprocessors and Microcontrollers',
-          'COA_Ch11_Microprocessors_and_Microcontrollers.pdf',
+          'Disk and Secondary Storage',
+          'COA_Ch11_Disk_and_Secondary_Storage.pdf',
         ],
-        [
-          '12',
-          'Master Sheet and Mixed Practice',
-          'COA_Ch12_Master_Sheet_and_Mixed_Practice.pdf',
-        ],
+        ['12', 'IO, Interrupt and DMA', 'COA_Ch12_IO_Interrupt_and_DMA.pdf'],
         [
           '13',
-          'Complete Bihar TRE 4 Notes',
-          'COA_Complete_BiharTRE4_Notes.pdf',
+          'Master Formula Sheet and Mixed Practice',
+          'COA_Ch13_Master_Formula_Sheet_and_Mixed_Practice.pdf',
         ],
+        ['14', 'Complete GATE 2027 Notes', 'COA_Complete_GATE2027_Notes.pdf'],
       ],
     },
     {
@@ -261,6 +253,12 @@
       file: `assets/notes/${subject.id}/${file}`,
     })),
   }));
+
+  const SUBJECT_ALIASES = {
+    'digital-electronics': 'de',
+    'computer-networks': 'cn',
+    'system-design': 'sd',
+  };
 
   const library = document.getElementById('library');
   const reader = document.getElementById('reader');
@@ -738,12 +736,6 @@
   function clampZoom(value) {
     return Math.min(2.4, Math.max(0.7, Math.round(value * 100) / 100));
   }
-
-  const SUBJECT_ALIASES = {
-    'digital-electronics': 'de',
-    'computer-networks': 'cn',
-    'system-design': 'sd',
-  };
 
   function findSubject(id) {
     const key = SUBJECT_ALIASES[id] || id;
