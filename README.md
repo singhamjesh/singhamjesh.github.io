@@ -2,27 +2,6 @@
 
 Personal portfolio for **Amjesh Kumar Singh** — Senior Software Engineer, Technical Lead, and Senior Full Stack Developer. Static site for GitHub Pages.
 
-## File structure
-
-```text
-.
-├── index.html              # Homepage
-├── favicon.ico
-├── robots.txt
-├── sitemap.xml
-├── README.md
-├── assets/
-│   ├── amjesh_cv.pdf       # Resume
-│   ├── css/style.css
-│   ├── js/script.js
-│   └── images/
-│       ├── me.png
-│       ├── logo.png
-│       └── logo2.png
-└── pages/
-    └── blogs.html          # Placeholder
-```
-
 ## Local preview
 
 ```bash

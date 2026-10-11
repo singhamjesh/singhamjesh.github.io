@@ -1,0 +1,160 @@
+.a-mascot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 160;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.a-mascot.is-in {
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+.a-mascot-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 132px;
+  transform: translate(-50%, -88%);
+}
+
+.a-mascot-svg {
+  display: block;
+  width: 100px;
+  height: 132px;
+  overflow: visible;
+}
+
+.part-body,
+.part-leg,
+.part-arm,
+.part-head,
+.part-shadow,
+.lid,
+.pupil,
+.sclera {
+  transform-box: fill-box;
+}
+
+.mouth-open,
+.mouth-sleep,
+.zzz {
+  opacity: 0;
+}
+
+.a-mascot[data-expression='wow'] .mouth-smile,
+.a-mascot[data-expression='sleep'] .mouth-smile {
+  opacity: 0;
+}
+
+.a-mascot[data-expression='wow'] .mouth-open,
+.a-mascot[data-expression='sleep'] .mouth-sleep {
+  opacity: 1;
+}
+
+.a-mascot[data-expression='curious'] .sclera {
+  transform: scale(1.06, 1.18);
+  transform-origin: center;
+}
+
+.a-mascot[data-expression='sleep'] .zzz {
+  opacity: 1;
+  animation: a-zzz 1.8s ease-in-out infinite;
+}
+
+.a-mascot.is-tucked .a-mascot-stage {
+  transform: translate(-50%, -88%) scale(0.74);
+  transform-origin: 50% 88%;
+}
+
+.a-mascot.is-docked {
+  left: auto;
+  top: auto;
+  right: 16px;
+  bottom: 16px;
+  width: 100px;
+  height: 132px;
+  transform: none !important;
+}
+
+.a-mascot.is-docked .a-mascot-stage {
+  position: relative;
+  transform: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.notes-body .a-mascot.is-docked {
+  bottom: 18px;
+  right: 14px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .subject-card {
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s ease,
+      border-color 0.45s ease;
+  }
+
+  .subject-card.is-tilting {
+    transition:
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .subject-card:hover {
+    box-shadow:
+      0 18px 36px rgba(0, 0, 0, 0.36),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+}
+
+@keyframes a-zzz {
+  0% {
+    transform: translate(0, 3px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(7px, -9px);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .a-mascot-stage,
+  .a-mascot-svg,
+  .a-mascot.is-docked {
+    width: 84px;
+    height: 112px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a-mascot,
+  .part-body,
+  .part-leg,
+  .part-arm,
+  .part-head,
+  .lid,
+  .pupil,
+  .sclera,
+  .zzz {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media print {
+  .a-mascot {
+    display: none !important;
+  }
+}

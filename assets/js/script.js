@@ -21,7 +21,7 @@
   document.querySelectorAll("[data-track='cv-download']").forEach((el) => {
     el.addEventListener('click', () => {
       trackEvent('file_download', {
-        file_name: 'amjesh_cv.pdf',
+        file_name: 'cv/amjesh-senior-software-engineer-cv.pdf',
         file_extension: 'pdf',
         link_url: el.getAttribute('href') || '',
       });
@@ -502,11 +502,17 @@
         const rect = card.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width;
         const y = (event.clientY - rect.top) / rect.height;
-        const rotateY = (x - 0.5) * 8;
-        const rotateX = (0.5 - y) * 8;
-        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+        const rotateY = (x - 0.5) * 5;
+        const rotateX = (0.5 - y) * 5;
+        const shiftX = (x - 0.5) * 8;
+        const shiftY = (y - 0.5) * 6;
+        card.classList.add('is-tilting');
+        card.style.setProperty('--spot-x', `${(x * 100).toFixed(1)}%`);
+        card.style.setProperty('--spot-y', `${(y * 100).toFixed(1)}%`);
+        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${shiftX}px, ${shiftY - 6}px, 0) scale(1.015)`;
       });
       card.addEventListener('mouseleave', () => {
+        card.classList.remove('is-tilting');
         card.style.transform = '';
       });
     });
